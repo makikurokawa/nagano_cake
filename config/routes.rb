@@ -2,10 +2,16 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'homes/about' => 'homes#about', as: 'about'
 
-  devise_for :customers
+  devise_for :customers, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
 
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+  sessions: "admin/sessions"
+}
+
   namespace :admin do
     get '/' => 'admin/homes#top'
 
