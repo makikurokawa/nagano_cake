@@ -1,7 +1,10 @@
 class HomesController < ApplicationController
   def top
+
   end
 
-  def about
+  def index
+    @orders = Order.all
   end
+
 end
