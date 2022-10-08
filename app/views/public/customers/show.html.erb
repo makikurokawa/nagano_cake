@@ -1,0 +1,31 @@
+<%= render 'public/publicheader' %>
+
+<h3>マイページ</h3>
+
+<h3>登録情報</h3>
+<%= link_to "編集する", infomation_edit_path %>
+
+<table class="table table-hover table-inverse">
+  <tbody>
+    <% @customer do |customer| %>
+    <tr>
+      <th>氏名</th><td><%= @customer_fullname %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th><td><%= @customer_fullname_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th><td><%= customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th><td><%= customer.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th><td><%= customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th><td><%= customer.email %></td>
+    </tr>
+  　<% end %>
+  </tbody>
+</table>

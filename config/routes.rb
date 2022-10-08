@@ -8,6 +8,16 @@ Rails.application.routes.draw do
 }
 
 
+  get '/my_page' => 'public/customers#show', as: 'my_page'
+  get '/infomation/edit' => 'public/customers#edit'
+
+  resources :items, only: [:index, :show]
+  resources :customers, only: [:update, :confirm, :destroy]
+  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+  resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+
   devise_for :admins, controllers: {
   sessions: "admin/sessions"
 }
