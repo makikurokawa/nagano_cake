@@ -1,16 +1,18 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
-    @customer = Customer.find(params[:id])
-    @customer_fullname = @customer.last_name + @customer.first_name
-    @customer_fullname_kana = @customer.last_name_kana + @customer.first_name_kana
+    @customer = current_customer
+    @customer_fullname = @customer.last_name +   @customer.first_name
+    @customer_fullname_kana = @customer.last_name_kana +   @customer.first_name_kana
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def update
-    customer = Customer.find(params[:id])
+    customer = current_customer
     customer.update
     redirect_to my_page_path
   end
