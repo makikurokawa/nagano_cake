@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
- namespace :customers do
-  get '/my_page' => 'public/customers#show'
-  get '/infomation/edit' => 'public/customers#edit'
+ scope module: :public do
+  get 'customers/my_page' => 'customers#show'
+  get 'customers/infomation/edit' => 'customers#edit'
   resources :customers, only: [:update, :confirm, :destroy]
  end
 
