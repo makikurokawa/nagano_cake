@@ -10,7 +10,8 @@ Rails.application.routes.draw do
  scope module: :public do
   get 'customers/my_page' => 'customers#show'
   get 'customers/infomation/edit' => 'customers#edit'
-  resources :customers, only: [:update, :confirm, :destroy]
+  patch 'customers/infomation' => 'customers#update'
+  resources :customers, only: [:confirm, :destroy]
  end
 
   resources :items, only: [:index, :show]
