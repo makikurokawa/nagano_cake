@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'customers/my_page' => 'customers#show'
   get 'customers/infomation/edit' => 'customers#edit'
   patch 'customers/infomation' => 'customers#update'
-  resources :customers, only: [:confirm, :destroy]
+  get 'customers/confirm' => 'customers#confirm'
+  patch 'customers/destroy' => 'customers#destroy'
  end
 
   resources :items, only: [:index, :show]
