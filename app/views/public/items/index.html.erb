@@ -1,1 +1,14 @@
-<h2>index</h2>
+<div class="container">
+  <div class="row">
+    <h1 class="font-weight-bold">商品一覧</h1>
+    <P>(全X件)</P>
+  </div>
+  <div class="row">
+    <% @item.each do |item| %>
+    <div class="box">
+      <%= image_tag item.image.get_image(100,100) %>
+      <%= item.name %>
+      <%= "￥" + item.price %>
+    </div>
+  </div>
+</div>

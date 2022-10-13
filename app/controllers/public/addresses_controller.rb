@@ -1,6 +1,8 @@
 class Public::AddressesController < ApplicationController
+
   def create
     address = Address.new(address_params)
+    address.customer_id = current_customer.id
     address.save
     redirect_to addresses_path
   end
@@ -18,7 +20,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.find(params[:id])
   end
 
-  def updatae
+  def update
     address = Address.find(params[:id])
     address.update(address_params)
     redirect_to addresses_path
