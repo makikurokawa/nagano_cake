@@ -1,14 +1,15 @@
 <div class="container">
   <div class="row">
-    <h1 class="font-weight-bold">商品一覧</h1>
+    <h4 class="font-weight-bold mt-5 mb-3">商品一覧</h4>
     <P>(全X件)</P>
   </div>
   <div class="row">
-    <% @item.each do |item| %>
-    <div class="box">
-      <%= image_tag item.image.get_image(100,100) %>
-      <%= item.name %>
-      <%= "￥" + item.price %>
+    <% @items.each do |item| %>
+    <div class="box col-3 p-1">
+      <%= image_tag item.get_image(300,200) %></br>
+      <%= item.name %></br>
+      ￥<%= item.price %></br>
     </div>
+    <% end %>
   </div>
 </div>

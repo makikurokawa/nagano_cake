@@ -1,7 +1,11 @@
-<h2>商品一覧</h2>
+<div class="container">
+  <div class="row">
+    <h4 class="bg-light my-5 ml-2 text-center col-2">商品一覧</h4>
+    <div class="box col-8">box1</div>
+    <%= link_to "+", new_admin_item_path, class: "btn btn-success rounded-circle.p-0 col-1" %>
+  </div>
 
-
-<table class="table table-hover table-inverse">
+<table class="table table-inverse">
         <thead>
           <tr>
             <th>商品ID</th>
@@ -40,3 +44,4 @@
           <% end %>
         </tbody>
       </table>
+</div>
