@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-4">
       <%= image_tag @item.get_image(300,200) %>
     </div>
@@ -8,10 +8,10 @@
         <%= @item.name %></br>
         <%= @item.introduction %></br>
         ￥<%= @price %>(税込)</br>
-        <% form_with model: @cart_item, cart_items_path, method: :post do |f| %>
-          <%= f.hidden_field :name, :value => @item.id %>
-          <%= f.select :amount, [[1,1], [2,2], [3,3], [4,4], [5,5], [6,6], [7,7], [8,8], [9,9], [10,10] %>
-          <%= f.submit "カートに入れる", cart_items_path, class: "btn btn-md btn-success" %>
+        <%= form_with model: @cart_item do |f| %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.select :amount, *[1..10] %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% end %>
     </div>
   </div>
