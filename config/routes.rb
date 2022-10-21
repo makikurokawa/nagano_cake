@@ -15,9 +15,13 @@ Rails.application.routes.draw do
    patch 'customers/destroy' => 'customers#destroy'
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    resources :items, only: [:index, :show]
-   resources :cart_items, only: [:index, :update, :destroy, :create]
+   delete 'cart_items/destroy' => 'cart_items#destroy'
+   resources :cart_items, only: [:index, :update, :create]
    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
-   resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
+
+   post 'orders/confirm' => 'order#confirm'
+   post 'orders/complete' => 'order#complete'
+   resources :orders, only: [:new, :create, :index, :show]
  end
 
   devise_for :admins, controllers: {

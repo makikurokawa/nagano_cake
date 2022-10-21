@@ -17,7 +17,7 @@ class Public::CustomersController < ApplicationController
     redirect_to customers_my_page_path
   end
 
-  def confirms
+  def confirm
   end
 
   def destroy
@@ -25,6 +25,6 @@ class Public::CustomersController < ApplicationController
     customer.destroy
     redirect_to root_path
   end
-  
-  
+
+
 end
