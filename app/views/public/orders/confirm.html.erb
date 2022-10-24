@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <h4>注文情報確認</h4>
+    <table class="table table-bordered">
+      <thead style="background-color: #c0c0c0;">
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @order.each do |order| %>
+          <tr>
+            <td class="col-4">
+              <%= image_tag order.item.get_image(100,50) %>
+              <%= order.item.name %>
+            </td>
+            <td class="col-2">
+              <%= order.item.with_tax_price %>
+            </td>
+            <td class="col-2">
+              <%= order.amount %>
+            </td>
+            <td class="col-2">
+              <%= cart_item.subtotal %>
+            </td>
+            <% @sum += cart_item.subtotal %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="box col-4">
+      <table class="table table-bordered">
+        <th class="col-2" style="background-color: #c0c0c0;">送料</th>
+        <td class="col-2"><%= "800".to_i %></td>
+        <th class="col-2" style="background-color: #c0c0c0;">商品合計</th>
+        <td class="col-2"><%= @sum %></td>
+        <th class="col-2" style="background-color: #c0c0c0;">請求金額</th>
+        <td class="col-2"><%= @sum %></td>
+      </table>
+    </div>
+
+    <div class="row">
+      <label>支払方法</label>
+      <% if @order.payment == 0 %>
+      <p>クレジットカード</p>
+      <% else %>
+      <p>銀行振込</p>
+      <% end %>
+      <label>お届け先</label>
+      <% if @order.address_id == 0 %>
+      <%= @order.postal_code + @order.address %></br>
+      <%= @order.name %>
+      <% elsif @order.address_id == 1 %>
+      <%= @address %>
+      <% else %>
+      <%= @order %>
+    </div>
+  </div>
+</div>
