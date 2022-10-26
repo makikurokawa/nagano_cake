@@ -1,28 +1,27 @@
 <div class="container">
   <div class="row">
-    <h4>注文情報確認</h4>
+    <h4 class="bg-light mt-5">注文情報確認</h4>
     <table class="table table-bordered">
       <thead style="background-color: #c0c0c0;">
-        <th>商品名</th>
-        <th>単価(税込)</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th></th>
+        <th class="col-4">商品名</th>
+        <th class="col-2">単価(税込)</th>
+        <th class="col-2">数量</th>
+        <th class="col-2">小計</th>
       </thead>
       <tbody>
-        <% @order.each do |order| %>
+        <% @orders.each do |order| %>
           <tr>
-            <td class="col-4">
+            <td>
               <%= image_tag order.item.get_image(100,50) %>
               <%= order.item.name %>
             </td>
-            <td class="col-2">
+            <td>
               <%= order.item.with_tax_price %>
             </td>
-            <td class="col-2">
+            <td>
               <%= order.amount %>
             </td>
-            <td class="col-2">
+            <td>
               <%= cart_item.subtotal %>
             </td>
             <% @sum += cart_item.subtotal %>
@@ -30,32 +29,37 @@
         <% end %>
       </tbody>
     </table>
-    <div class="box col-4">
+    <div class="box col-2">
       <table class="table table-bordered">
-        <th class="col-2" style="background-color: #c0c0c0;">送料</th>
-        <td class="col-2"><%= "800".to_i %></td>
-        <th class="col-2" style="background-color: #c0c0c0;">商品合計</th>
-        <td class="col-2"><%= @sum %></td>
-        <th class="col-2" style="background-color: #c0c0c0;">請求金額</th>
-        <td class="col-2"><%= @sum %></td>
+        <tr>
+          <th class="col-1" style="background-color: #c0c0c0;">送料</th>
+          <td class="col-1"><%= "800".to_i %></td>
+        </tr>
+        <tr>
+          <th class="col-1" style="background-color: #c0c0c0;">商品合計</th>
+          <td class="col-1"><%= @sum %></td>
+        </tr>
+        <tr>
+          <th class="col-1" style="background-color: #c0c0c0;">請求金額</th>
+        <td class="col-1"><%= @sum %></td>
+        </tr>
       </table>
     </div>
-
-    <div class="row">
-      <label>支払方法</label>
-      <% if @order.payment == 0 %>
-      <p>クレジットカード</p>
-      <% else %>
-      <p>銀行振込</p>
-      <% end %>
-      <label>お届け先</label>
-      <% if @order.address_id == 0 %>
-      <%= @order.postal_code + @order.address %></br>
-      <%= @order.name %>
-      <% elsif @order.address_id == 1 %>
-      <%= @address %>
-      <% else %>
+  </div>
+  <div class="row">
+    <label>支払方法</label></br>
+    <% if @order.payment_method == 0 %>
+      <p>クレジットカード</p></br>
+    <% else %>
+      <p>銀行振込</p></br>
+    <% end %>
+    <label>お届け先</label></br>
       <%= @order %>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <%= link_to "注文を確定する", orders_complete_path, method: :post, class: "btn btn-lg btn-success" %>
     </div>
   </div>
+
 </div>
