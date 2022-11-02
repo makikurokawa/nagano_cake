@@ -9,10 +9,10 @@
     <div class="form-group col-12">
       <label for="order_payment">支払方法</label></br>
       <div class="form-item ml-3">
-        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
-        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+        <%= f.radio_button :payment, Order.payments.key(0) %>
+        <%= f.label :payment, Order.payments_i18n[:credit_card] %></br>
+        <%= f.radio_button :payment, Order.payments.key(1) %>
+        <%= f.label :payment, Order.payments_i18n[:transfer] %>
       </div>
     </div>
   </div>
