@@ -23,7 +23,13 @@
         </tr>
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">支払方法</th>
-          <td class="col-5"><%= @order.payment %></td>
+          <td class="col-5">
+            <% if @order.payment == 0 %>
+              <p>クレジットカード</p>
+            <% else %>
+              <p>銀行振込</p>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">ステータス</th>
@@ -35,12 +41,12 @@
       <table class="table table-bordered">
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">商品合計</th>
-          <td class="col-2"><%= @order. %></td>
+          <td class="col-2"><%= @total %></td>
         </tr>
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">配送料</th>
           <td class="col-2">
-            <%= @order.name %>
+            <%= 800 %>
           </td>
         </tr>
         <tr>
@@ -62,23 +68,23 @@
         <th class="col-1">小計</th>
       </thead>
       <tbody>
-        <% @order_details.each do |order| %>
+          <% @order.order_details.each do |order_detail| %>
           <tr>
             <td>
-              <%= order.item.name %>
+              <%= order_detail.item.name %>
             </td>
             <td>
-              <%= order.price_including_tax %>
+              <%= order_detail.item.with_tax_price %>
             </td>
             <td>
-              <%= order.quantity %>
+              <%= order_detail.quantity %>
             </td>
             <td>
-              <%= order.subtotal %>
+              <%= order_detail.item.with_tax_price * order_detail.quantity %>
             </td>
-            <% @sum += order.subtotal %>
+
           </tr>
-        <% end %>
+          <% end %>
       </tbody>
     </table>
   </div>

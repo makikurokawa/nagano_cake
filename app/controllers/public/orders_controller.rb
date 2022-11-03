@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
         order_detail = OrderDetail.new
         order_detail.item_id = cart.item_id
         order_detail.order_id = @order.id
-        order_detail.price_including_tax = @order.billing_amount
+        order_detail.price_including_tax = cart.item.with_tax_price
         order_detail.quantity = cart.amount
         order_detail.making_status = 0
         order_detail.save
@@ -31,7 +31,6 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @order_detail = @order.order_detail
   end
 
   def confirm
@@ -56,6 +55,8 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @sum = 0
+    @total = @order.billing_amount - 800
   end
 
   private
