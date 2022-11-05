@@ -1,12 +1,15 @@
-<h1>注文履歴一覧</h1>
-
-<table class="table table-hover table-inverse">
+<div class="container">
+  <div class="row">
+    <h4>注文履歴一覧</h4>
+  </div>
+  <div class="row">
+    <table class="table table-hover table-inverse">
         <thead>
           <tr>
-            <th>購入日時</th>
-            <th>購入者</th>
-            <th>注文個数</th>
-            <th>注文ステータス</th>
+            <th class="col-3">購入日時</th>
+            <th class="col-3">購入者</th>
+            <th class="col-3">注文個数</th>
+            <th class="col-3">注文ステータス</th>
             <th colspan="3" ></th>
           </tr>
         </thead>
@@ -17,10 +20,10 @@
               <%= link_to order.created_at, admin_order_path(order.id) %>
             </td>
             <td>
-              <%= order.name %>
+              <%= order.customer.last_name + order.customer.first_name %>
             </td>
             <td>
-              <%= order.order_detail.quantity %>
+              <% order.order_detail.quantity %>
             </td>
             <td>
               <%= order.status %>
@@ -29,3 +32,6 @@
           <% end %>
         </tbody>
       </table>
+  </div>
+</div>
+
