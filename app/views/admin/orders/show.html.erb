@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <h4>注文履歴詳細</h4>
+    <h4 class="my-5 bg-light col-2">注文履歴詳細</h4>
   </div>
   <div class="row">
-    <table class="table">
+    <table class="table table-borderless">
       <tr>
-        <th>購入者</th>
+        <th class="col-2">購入者</th>
         <td><%= @order.customer.last_name + @order.customer.first_name %></td>
       </tr>
       <tr>
@@ -21,21 +21,35 @@
       </tr>
       <tr>
         <th>支払方法</th>
-        <td><%= @order.payment %></td>
+        <td>
+          <% if @order.payment == 0 %>
+           <p>クレジットカード</p>
+          <% else %>
+           <p>銀行振込</p>
+          <% end %>
+        </td>
       </tr>
+    </table>
+    </div>
+    <div class="row">
+      <table class="table table-borderless">
       <tr>
-        <th>注文ステータス</th>
+        <th class="col-2">注文ステータス</th>
         <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-        <td><%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2],['発送準備中',3],['発送済み',4] %></td>
-        <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
+        <td class="col-2">
+          <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2],['発送準備中',3],['発送済み',4]] %>
+        </td>
+        <td>
+          <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+        </td>
         <% end %>
       </tr>
     </table>
   </div>
 
   <div class="row">
-    <table class="table table-inverse col-9">
-      <thead>
+    <table class="table table-borderless col-8">
+      <thead class="table-secondary">
         <th>商品名</th>
         <th>単価（税込）</th>
         <th>数量</th>
@@ -43,7 +57,7 @@
         <th>製作ステータス</th>
         <th></th>
       </thead>
-      <% @oeder.order_details.each do |order_detail| %>
+      <% @order.order_details.each do |order_detail| %>
       <tbody>
         <td>
           <%= order_detail.item.name %>
@@ -59,18 +73,20 @@
         </td>
         <%= form_with model: @order_detail, url: admin_order_detail_path, method: :patch do |f| %>
         <td>
-          <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2],['製作完了',3] %>
+          <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2],['製作完了',3]] %>
         </td>
         <td>
           <%= f.submit "更新", class: "btn btn-sm btn-success" %>
         </td>
         <% end %>
+      <% end %>
       </tbody>
     </table>
-    <table class="table">
+    <div class="col-1"></div>
+    <table class="table table-borderless col-3">
       <tr>
-        <th>商品合計</th>
-        <td><%= @total %>円</td>
+        <th class="col-2">商品合計</th>
+        <td class="col-1"><%= @total %>円</td>
       </tr>
       <tr>
         <th>送料</th>
@@ -78,9 +94,9 @@
       </tr>
       <tr>
         <th>請求金額合計</th>
-        <td><%= @total %>円</td>
+        <td class="font-weight-bold"><%= @order.billing_amount %>円</td>
       </tr>
-    　<% end %>
+
     </table>
   </div>
 </div>

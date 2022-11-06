@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authenticate_customer!
+
 
   def show
     @order = Order.find(params[:id])
