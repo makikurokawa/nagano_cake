@@ -1,44 +1,47 @@
 <div class="container">
-  <h4><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
-
+  <div class="row">
+    <h4 class="bg-light my-5 ml-2 text-center col-4">
+      <%= @customer.last_name + @customer.first_name %>さんの会員情報編集
+    </h4>
+  </div>
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
   <div class="row">
-    <div class="col-8">
+    <div class="col-10">
       <div class="form-group">
-        <table class="table table-hover table-inverse">
+        <table class="table table-borderless">
           <tbody>
             <tr>
-              <th><label for="customer_id">会員ID</label></th>
+              <th class="col-3">会員ID</th>
               <td><%= @customer.id %></td>
             </tr>
             <tr>
-              <th><label for="customer_name">氏名</label></th>
+              <th>氏名</th>
               <td><%= f.text_field :last_name, class: 'form-control name' %></td>
               <td><%= f.text_field :first_name, class: 'form-control name' %></td>
             </tr>
             <tr>
-              <th><label for="customer_name_kana">フリガナ</label></th>
+              <th>フリガナ</th>
               <td><%= f.text_field :last_name_kana, class: 'form-control name_kana' %></td>
               <td><%= f.text_field :first_name_kana, class: 'form-control name_kana' %></td>
             </tr>
             <tr>
-              <th><label for="customer_postal_code">郵便番号</label></th>
+              <th>郵便番号</th>
               <td><%= f.text_field :postal_code, class: 'form-control postal_code' %></td>
             </tr>
             <tr>
-              <th><label for="customer_address">住所</label></th>
+              <th>住所</th>
               <td><%= f.text_field :address, class: 'form-control address' %></td>
             </tr>
             <tr>
-              <th><label for="customer_telephone_number">電話番号</label></th>
+              <th>電話番号</th>
               <td><%= f.text_field :telephone_number, class: 'form-control telephone_number' %></td>
             </tr>
             <tr>
-              <th> <label for="customer_email">メールアドレス</label></th>
+              <th>メールアドレ</th>
               <td><%= f.text_field :email, class: 'form-control email' %></td>
             </tr>
             <tr>
-              <th><label for="customer_is_deleted">会員ステータス</label></th>
+              <th>会員ステータス</th>
               <td>
                 <%= f.radio_button :is_deleted, false %>
                 <%= f.label :is_deleted, '有効' %>
@@ -49,7 +52,7 @@
             <tr></tr>
             <tr>
               <th></th>
-              <td><%= f.submit '変更を保存', class: 'btn btn-sm btn-success' %></td>
+              <td><%= f.submit '変更を保存', class: 'btn btn-lg px-3 btn-success' %></td>
             </tr>
           </tbody>
         </table>

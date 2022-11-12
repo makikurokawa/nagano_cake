@@ -6,7 +6,7 @@
     <table class="table table-borderless">
       <tr>
         <th class="col-2">購入者</th>
-        <td><%= @order.customer.last_name + @order.customer.first_name %></td>
+        <td><%= link_to @order.customer.last_name + @order.customer.first_name, admin_customer_path(@order.customer.id) %></td>
       </tr>
       <tr>
         <th>注文日</th>
@@ -35,9 +35,10 @@
       <table class="table table-borderless">
       <tr>
         <th class="col-2">注文ステータス</th>
-        <td class="col-2">
+        <td>
           <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
           <%= f.select :status, Order.statuses_i18n.invert %>
+
           <%= f.submit "更新", class: "btn btn-sm btn-success" %>
           <% end %>
         </td>
@@ -62,16 +63,16 @@
           <%= order_detail.item.name %>
         </td>
         <td>
-          <%= order_detail.item.with_tax_price %>
+          <%= order_detail.item.with_tax_price.to_s(:delimited) %>
         </td>
         <td>
           <%= order_detail.quantity %>
         </td>
         <td>
-          <%= order_detail.item.with_tax_price * order_detail.quantity %>
+          <%= (order_detail.item.with_tax_price * order_detail.quantity).to_s(:delimited) %>
         </td>
         <td>
-          <%= form_with model: @order_detail, url: admin_order_detail_path, method: :patch do |f| %>
+          <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
           <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
           <%= f.submit "更新", class: "btn btn-sm btn-success" %>
           <% end %>
@@ -84,7 +85,7 @@
     <table class="table table-borderless col-3">
       <tr>
         <th class="col-2">商品合計</th>
-        <td class="col-1"><%= @total %>円</td>
+        <td class="col-1"><%= @total.to_s(:delimited) %>円</td>
       </tr>
       <tr>
         <th>送料</th>
@@ -92,7 +93,7 @@
       </tr>
       <tr>
         <th>請求金額合計</th>
-        <td class="font-weight-bold"><%= @order.billing_amount %>円</td>
+        <td class="font-weight-bold"><%= @order.billing_amount.to_s(:delimited) %>円</td>
       </tr>
 
     </table>
