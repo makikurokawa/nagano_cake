@@ -2,8 +2,8 @@
   <div class="row mt-5">
     <div class="mx-auto" style="position: relative; display:inline-block;">
       <%= image_tag 'ホールケーキ.jpeg' %>
-      <div style="position: absolute; top: 0; left: 0; max-width: 100%; max-height: 100%; padding: 30px; text-align: left;">
-        <p>
+      <div style="position: absolute; top: 300px; left: 160px; max-width: 100%; max-height: 100%; padding: 30px; text-align: left; background-color: orange;">
+        <p class="font-weight-bold">
           ようこそ、ながのCAKEへ！</br>
           このサイトは、ケーキ販売のECサイトになります。</br>
           会員でない方も商品の閲覧はできますが、</br>
@@ -13,16 +13,16 @@
     </div>
   </div>
   <div class="row">
-    <h1 class="font-weight-bold">新着商品</h1>
+    <h2 class="font-weight-bold">新着商品</h2>
   </div>
   <div class="row">
     <% @items.each do |item| %>
-    <div class="box col-3 p-1">
+    <div class="box col-3">
       <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_image(300,200) %></br>
+        <%= image_tag item.get_image(250,150) %></br>
       <% end %>
       <%= item.name %></br>
-      ￥<%= item.price %></br>
+      ￥<%= item.price.to_s(:delimited) %></br>
     </div>
     <% end %>
 
