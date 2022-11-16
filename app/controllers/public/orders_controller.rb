@@ -10,7 +10,6 @@ class Public::OrdersController < ApplicationController
   def create
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
-    @order.status = 0
     if @order.save
       cart_items.each do |cart|
         order_detail = OrderDetail.new
@@ -18,7 +17,6 @@ class Public::OrdersController < ApplicationController
         order_detail.order_id = @order.id
         order_detail.price_including_tax = cart.item.with_tax_price
         order_detail.quantity = cart.amount
-        order_detail.making_status = 0
         order_detail.save
       end
       redirect_to orders_complete_path

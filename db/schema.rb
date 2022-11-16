@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_125413) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_125413) do
     t.integer "order_id", null: false
     t.integer "price_including_tax", null: false
     t.integer "quantity", null: false
-    t.integer "making_status", null: false
+    t.integer "making_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 2022_11_02_125413) do
     t.string "name", null: false
     t.integer "billing_amount", null: false
     t.integer "postage", null: false
-    t.integer "payment", null: false
-    t.integer "status", null: false
+    t.integer "payment", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

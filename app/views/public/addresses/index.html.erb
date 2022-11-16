@@ -1,29 +1,33 @@
 <div class="container">
-  <h4 class="my-5">配送先登録/一覧</h4>
+  <div class="row">
+    <h4 class="my-5 bg-light col-3 text-center">配送先登録/一覧</h4>
+  </div>
+
   <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
   <div class="form-group">
     <div class="row my-2">
       <%= f.label "郵便番号(ハイフンなし)", class: "col-3" %>
-      <%= f.text_field :postal_code, class: "col-3" %>
+      <%= f.text_field :postal_code, class: "form-control col-3" %>
     </div>
     <div class="row my-2">
       <%= f.label "住所", class: "col-3" %>
-      <%= f.text_field :address, class: "col-6" %>
+      <%= f.text_field :address, class: "form-control col-6" %>
     </div>
     <div class="row my-2">
       <%= f.label "宛名", class: "col-3" %>
-      <%= f.text_field :name, class: "col-3" %>
-      <%= f.submit "新規登録", class: "btn btn-md btn-success" %>
+      <%= f.text_field :name, class: "form-control col-3" %>
+      <div class="col-3"></div>
+      <%= f.submit "新規登録", class: "btn btn-md btn-success ml-5" %>
     </div>
   </div>
   <% end %>
 
-  <table class="table table-bordered border-dark">
-    <thead class="table-light">
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-      <th></th>
+  <table class="table table-bordered border-dark col-10 my-5">
+    <thead class="table-secondary">
+      <th class="col-1">郵便番号</th>
+      <th class="col-3">住所</th>
+      <th class="col-1">宛名</th>
+      <th class="col-2"></th>
     </thead>
     <% @addresses.each do |address| %>
     <tbody>
@@ -33,7 +37,7 @@
         <td><%= address.name %></td>
         <td>
           <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
-          <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger" %>
+          　<%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger" %>
         </td>
       </tr>
     </tbody>

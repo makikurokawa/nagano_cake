@@ -1,17 +1,20 @@
 <div class="container">
   <div class="row">
     <h4 class="font-weight-bold mt-5 mb-3">商品一覧</h4>
-    <P>(全X件)</P>
+    <h5 class="font-weight-bold mt-5 mb-2">(全<%= @count %>件)</h5>
   </div>
   <div class="row">
     <% @items.each do |item| %>
-    <div class="box col-3 p-1">
+    <div class="box col-3 p-2">
       <%= link_to item_path(item.id) do %>
-        <%= image_tag item.get_image(300,200) %></br>
+        <%= image_tag item.get_image(250,150) %></br>
       <% end %>
       <%= item.name %></br>
-      ￥<%= item.price %></br>
+      ￥<%= item.price.to_s(:delimited) %></br>
     </div>
     <% end %>
+  </div>
+  <div class="row mx-auto">
+    <%= paginate @items %>
   </div>
 </div>

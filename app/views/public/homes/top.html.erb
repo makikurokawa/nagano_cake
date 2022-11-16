@@ -16,7 +16,7 @@
     <h2 class="font-weight-bold">新着商品</h2>
   </div>
   <div class="row">
-    <% @items.each do |item| %>
+    <% @items.first(4).each do |item| %>
     <div class="box col-3">
       <%= link_to item_path(item.id) do %>
         <%= image_tag item.get_image(250,150) %></br>

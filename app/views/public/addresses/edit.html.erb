@@ -4,15 +4,16 @@
   <div class="form-group">
     <div class="row my-2">
       <%= f.label "郵便番号(ハイフンなし)", class: "col-3" %>
-      <%= f.text_field :postal_code, class: "col-3" %>
+      <%= f.text_field :postal_code, class: "form-control col-3" %>
     </div>
     <div class="row my-2">
       <%= f.label "住所", class: "col-3" %>
-      <%= f.text_field :address, class: "col-6" %>
+      <%= f.text_field :address, class: "form-control col-6" %>
     </div>
     <div class="row my-2">
       <%= f.label "宛名", class: "col-3" %>
-      <%= f.text_field :name, class: "col-3" %>
+      <%= f.text_field :name, class: "form-control col-3" %>
+      <div class="col-3"></div>
       <%= f.submit "変更内容を保存", class: "btn btn-md btn-success" %>
     </div>
   </div>
