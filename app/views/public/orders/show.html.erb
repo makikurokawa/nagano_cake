@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    <h4>注文履歴詳細</h4>
+  <div class="row my-5">
+    <h4 class="bg-light col-2">注文履歴詳細</h4>
   </div>
   <div class="row">
     <P class="col-7">注文情報</P>
@@ -11,7 +11,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">注文日</th>
-          <td class="col-5"><%= @order.created_at %></td>
+          <td class="col-5"><%= l @order.created_at %></td>
         </tr>
         <tr>
           <th class="col-2" style="background-color: #c0c0c0;">配送先</th>
