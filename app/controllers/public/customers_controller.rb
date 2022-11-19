@@ -21,14 +21,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def destroy
-    customer = currento_customer
+    customer = current_customer
     customer.destroy
     redirect_to root_path
   end
 
   private
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :telephone_number)
+      params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :telephone_number, :email)
     end
 
 end
