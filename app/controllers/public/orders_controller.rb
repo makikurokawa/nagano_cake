@@ -52,9 +52,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = current_customer.orders.find(params[:id])
-    @sum = 0
-    @total = @order.billing_amount - 800
+    @order = Order.find(params[:id])
+    @total = @order.billing_amount - @order.postage
   end
 
   private

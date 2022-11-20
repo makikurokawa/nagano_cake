@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-  before_action :authenticate_customer! 
+  before_action :authenticate_customer!
 
   def create
     cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
@@ -15,7 +15,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @sum = 0
   end
 

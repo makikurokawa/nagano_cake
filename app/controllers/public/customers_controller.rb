@@ -22,7 +22,7 @@ class Public::CustomersController < ApplicationController
 
   def destroy
     customer = current_customer
-    customer.destroy
+    customer.update(is_deleted: true)
     redirect_to root_path
   end
 
