@@ -54,7 +54,7 @@
   </div>
   <div class="row">
     <label class="font-weight-bold mr-5">支払方法</label>
-    <% if @order.payment == 0 %>
+    <% if @order.payment == "credit_card" %>
       <p>クレジットカード</p>
     <% else %>
       <p>銀行振込</p>
