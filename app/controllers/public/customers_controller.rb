@@ -23,6 +23,7 @@ class Public::CustomersController < ApplicationController
   def destroy
     customer = current_customer
     customer.update(is_deleted: true)
+    sign_out current_customer
     redirect_to root_path
   end
 
